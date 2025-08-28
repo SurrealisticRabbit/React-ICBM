@@ -9,6 +9,10 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 
+import GeneralSettingsCard from "../widgets/GeneralSettingsCard";
+import ServerStatusCard from "../widgets/ServerStatusCard";
+import TestOptionsCard from "../widgets/TestOptionsCard";
+
 function SettingsPage() {
   return (
     <Box
@@ -18,88 +22,10 @@ function SettingsPage() {
       }}
     >
       <Stack spacing={2}>
-        <Card
-          sx={{
-            mt: 2,
-          }}
-        >
-          <CardContent>
-            <Box>
-              <Typography
-                sx={{
-                  m: 2,
-                  textAlign: "center",
-                }}
-                variant="h5"
-              >
-                Settings
-              </Typography>
-              <Stack direction="column" spacing={2}>
-                <Button variant="contained" color="error">
-                  Logout
-                </Button>
-                <Button variant="outlined" color="error">
-                  Delete App Data
-                </Button>
-              </Stack>
-            </Box>
-          </CardContent>
-        </Card>
+        <GeneralSettingsCard />
+        <ServerStatusCard />
+        <TestOptionsCard />
       </Stack>
-
-      <Card
-        sx={{
-          mt: 2,
-        }}
-      >
-        <CardContent>
-          <Box>
-            <Typography
-              sx={{
-                m: 2,
-                textAlign: "center",
-              }}
-              variant="h5"
-            >
-              Server Status
-            </Typography>
-            <Stack direction="column" spacing={2}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Typography variant="body1">Server Status:</Typography>
-                <Chip
-                  sx={{
-                    ml: 1,
-                    fontSize: 15,
-                  }}
-                  label="Server Online"
-                  color="success"
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Typography variant="body1">Service Status:</Typography>
-                <Chip
-                  sx={{
-                    ml: 1,
-                    fontSize: 15,
-                  }}
-                  label="ICBM System Online"
-                  color="success"
-                />
-              </Box>
-            </Stack>
-          </Box>
-        </CardContent>
-      </Card>
     </Box>
   );
 }
