@@ -118,8 +118,9 @@ function GoPage() {
           justifyContent: "center",
         }}
       >
-        <ToggleButtonGroup {...control} exclusive aria-label="Platform">
-          <ToggleButton color="primary" value="idle">
+        <ToggleButtonGroup 
+          {...control} exclusive aria-label="Platform">
+          <ToggleButton sx={{borderRadius:4}} color="primary" value="idle">
             Idle
           </ToggleButton>
           <ToggleButton color="secondary" value="next_phase">
@@ -128,7 +129,7 @@ function GoPage() {
           <ToggleButton color="warning" value="nuclear">
             Nuclear
           </ToggleButton>
-          <ToggleButton color="error" value="hol_up">
+          <ToggleButton sx={{borderRadius:4}} color="error" value="hol_up">
             Hol' Up
           </ToggleButton>
         </ToggleButtonGroup>

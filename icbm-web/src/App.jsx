@@ -13,6 +13,8 @@ import GoPage from "./components/pages/GoPage";
 import FriendsPage from "./components/pages/FriendsPage";
 import SettingsPage from "./components/pages/SettingsPage";
 import RegisterPage from "./components/pages/RegisterPage"; // 1. Import the new page
+import CountdownPage from "./components/pages/CountdownPage";
+
 
 const darkTheme = createTheme({
   palette: {
@@ -25,16 +27,15 @@ const darkTheme = createTheme({
 
 function App() {
   const [value, setValue] = React.useState(0);
-  // 2. Add state to manage which view is active
   const [view, setView] = React.useState("main");
 
-  // 3. If the view is not 'main', render the specific page
   if (view === "register") {
-    // Pass the setView function so the RegisterPage can navigate back
     return <RegisterPage onNavigate={setView} />;
+  } else if (view === "countdown") {
+    return <CountdownPage onComplete={setView}/>;
   }
 
-  // Otherwise, render the main app layout
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline enableColorScheme />
@@ -43,6 +44,7 @@ function App() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          pt: 1,
           pb: "72px",
         }}
       >

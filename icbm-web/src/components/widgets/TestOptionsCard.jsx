@@ -29,13 +29,19 @@ function TestOptionsCard({ onNavigate }) {
             <Button variant="outlined" color="primary">
               Open Sign-In Page
             </Button>
-            {/* When clicked, call onNavigate with the target page name */}
             <Button
               variant="outlined"
               color="secondary"
               onClick={() => onNavigate("register")}
             >
               Open Register Page
+            </Button>
+            <Button
+              variant="outlined"
+              color="success"
+              onClick={() => onNavigate("countdown")}
+            >
+                Countdown Test
             </Button>
           </Stack>
         </Box>

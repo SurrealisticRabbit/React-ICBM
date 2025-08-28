@@ -18,8 +18,8 @@ function SettingsPage({ onNavigate }) {
   return (
     <Box
       sx={{
-        width: "100%",
-        p: 2,
+        width: "90%",
+        p: 1,
       }}
     >
       <Stack spacing={2}>

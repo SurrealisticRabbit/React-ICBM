@@ -68,7 +68,7 @@ function FriendDisplayCard({ friend, onRsvpClick }) {
             {name}
           </Typography>
           <Typography
-            variant="subtitle1"
+            variant="subtitle3"
             color="text.secondary"
             component="div"
           >
@@ -123,7 +123,7 @@ function FriendDisplayCard({ friend, onRsvpClick }) {
                   }}
                   elevation={3}
                 >
-                  <Typography variant="body2">
+                  <Typography variant="subtitle3">
                     {message.sender}: {message.message}
                   </Typography>
                 </Paper>
