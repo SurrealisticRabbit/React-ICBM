@@ -36,6 +36,8 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          # Point to the lock file in the subdirectory
+          cache-dependency-path: icbm-web/package-lock.json
       - name: Install dependencies
         # Note: We are in the icbm-web subdirectory
         run: npm ci
