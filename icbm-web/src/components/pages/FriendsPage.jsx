@@ -3,15 +3,7 @@ import FriendDisplayCard from "../widgets/FriendDisplayCard";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
-// Define the initial state for your friends outside the component
 const initialFriends = [
-  {
-    id: 1, // Add a unique ID for each friend
-    name: "Gandalf",
-    status_colour: "success",
-    status_short: "Online",
-    status_long: "Gandalf is online",
-  },
   {
     id: 2,
     name: "Ducky",
