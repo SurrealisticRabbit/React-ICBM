@@ -6,7 +6,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-function TestOptionsCard() {
+// Accept the onNavigate function as a prop
+function TestOptionsCard({ onNavigate }) {
   return (
     <Card
       sx={{
@@ -28,7 +29,12 @@ function TestOptionsCard() {
             <Button variant="outlined" color="primary">
               Open Sign-In Page
             </Button>
-            <Button variant="outlined" color="secondary">
+            {/* When clicked, call onNavigate with the target page name */}
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => onNavigate("register")}
+            >
               Open Register Page
             </Button>
           </Stack>

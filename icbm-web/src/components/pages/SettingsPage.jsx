@@ -13,7 +13,8 @@ import GeneralSettingsCard from "../widgets/GeneralSettingsCard";
 import ServerStatusCard from "../widgets/ServerStatusCard";
 import TestOptionsCard from "../widgets/TestOptionsCard";
 
-function SettingsPage() {
+// Accept onNavigate as a prop from App.jsx
+function SettingsPage({ onNavigate }) {
   return (
     <Box
       sx={{
@@ -24,7 +25,8 @@ function SettingsPage() {
       <Stack spacing={2}>
         <GeneralSettingsCard />
         <ServerStatusCard />
-        <TestOptionsCard />
+        {/* Pass onNavigate down to the TestOptionsCard */}
+        <TestOptionsCard onNavigate={onNavigate} />
       </Stack>
     </Box>
   );

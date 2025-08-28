@@ -12,20 +12,29 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import GoPage from "./components/pages/GoPage";
 import FriendsPage from "./components/pages/FriendsPage";
 import SettingsPage from "./components/pages/SettingsPage";
-
+import RegisterPage from "./components/pages/RegisterPage"; // 1. Import the new page
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
       main: "#FFFFFF",
-    }
+    },
   },
 });
 
 function App() {
   const [value, setValue] = React.useState(0);
+  // 2. Add state to manage which view is active
+  const [view, setView] = React.useState("main");
 
+  // 3. If the view is not 'main', render the specific page
+  if (view === "register") {
+    // Pass the setView function so the RegisterPage can navigate back
+    return <RegisterPage onNavigate={setView} />;
+  }
+
+  // Otherwise, render the main app layout
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline enableColorScheme />
@@ -39,7 +48,8 @@ function App() {
       >
         {value === 0 && <GoPage />}
         {value === 1 && <FriendsPage />}
-        {value === 2 && <SettingsPage />}
+        {/* 4. Pass the setView function down to SettingsPage */}
+        {value === 2 && <SettingsPage onNavigate={setView} />}
         <Paper
           sx={{
             position: "fixed",
@@ -56,10 +66,7 @@ function App() {
               setValue(newValue);
             }}
           >
-            <BottomNavigationAction
-              label="Go"
-              icon={<WhatshotIcon />}
-            />
+            <BottomNavigationAction label="Go" icon={<WhatshotIcon />} />
             <BottomNavigationAction
               label="Friends"
               icon={<PeopleOutlineIcon />}
