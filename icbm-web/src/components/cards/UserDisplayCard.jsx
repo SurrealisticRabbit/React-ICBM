@@ -13,6 +13,8 @@ function UserDisplayCard({ user }) {
   const user_status_short = user.status_short;
   const user_status_long = user.status_long;
   const user_mode_colour = user.mode_colour;
+  const user_mode = user.mode.toUpperCase();
+
 
   return (
     <Card
@@ -28,10 +30,18 @@ function UserDisplayCard({ user }) {
       <CardContent>
         <Typography component="div" variant="h5">
           {user_name}
+          <Chip
+          label={user_status_short}
+          color={user_status_colour}
+          variant="outlined"
+          sx={{ ml: 1, mb:1 }}
+        />
         </Typography>
+        
         <Typography variant="subtitle3" color="text.secondary" component="div">
           {user_status_long}
         </Typography>
+        
       </CardContent>
       <Box
         sx={{
@@ -41,14 +51,12 @@ function UserDisplayCard({ user }) {
         }}
       >
         <Chip
-          label={user_status_short}
-          color={user_status_colour}
+          icon={<WhatsHotIcon />}
+          label={user_mode}
+          color={user_mode_colour}
           variant="outlined"
           sx={{ mr: 1 }}
         />
-        <IconButton>
-          <WhatsHotIcon color={user_mode_colour}/>
-        </IconButton>
       </Box>
     </Card>
   );
