@@ -1,5 +1,5 @@
 import React from "react";
-import UserDisplayCard from "../widgets/UserDisplayCard";
+import UserDisplayCard from "../cards/UserDisplayCard";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Box from "@mui/material/Box";

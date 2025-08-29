@@ -7,27 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import RsvpOutlinedIcon from "@mui/icons-material/RsvpOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
-import Stack from "@mui/material/Stack";
-import Divider from "@mui/material/Divider";
-import Paper from "@mui/material/Paper";
-
-const message_history = [
-  {
-    sender: "Ducky",
-    message: "Where are you?",
-  },
-  {
-    sender: "Gandalf",
-    message: "I'm here!",
-  },
-  {
-    sender: "Gandalf",
-    message: "It's time",
-  },
-];
+import MessagerBox from "../widgets/MessagerBox";
 
 function FriendDisplayCard({ friend, onRsvpClick }) {
   const { name, status_colour, status_short, status_long } = friend;
@@ -93,60 +74,7 @@ function FriendDisplayCard({ friend, onRsvpClick }) {
       </Box>
 
       <Collapse in={isMessageOpen} timeout="auto" unmountOnExit>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1, // Add padding for spacing
-          }}
-        >
-          <Stack>
-            {message_history.map((message, index) => (
-              <Box
-                sx={{
-                  display: "flex",
-                  m:1,
-                  ml:2,
-                  flexDirection: "column",
-                  width: "100%",
-                  alignItems:
-                    message.sender === name ? "flex-end" : "flex-start",
-                  justifyContent:
-                    message.sender === name ? "flex-end" : "flex-start",
-                }}
-              >
-                <Paper
-                  sx={{
-                    width: "100%",
-                    p:0.5,
-                    mt:0.5,
-                  }}
-                  elevation={3}
-                >
-                  <Typography variant="subtitle3">
-                    {message.sender}: {message.message}
-                  </Typography>
-                </Paper>
-              </Box>
-            ))}
-          </Stack>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            p: 2, // Add padding for spacing
-          }}
-        >
-          <TextField
-            fullWidth // This makes the TextField expand
-            label={`Message to ${name}`}
-            variant="outlined"
-            size="small" // Use "small" size for a more compact look
-          />
-          <Button variant="contained">Send</Button>
-        </Box>
+        <MessagerBox />
       </Collapse>
     </Card>
   );

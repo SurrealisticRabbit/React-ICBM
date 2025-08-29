@@ -1,5 +1,5 @@
 import React from "react";
-import FriendDisplayCard from "../widgets/FriendDisplayCard";
+import FriendDisplayCard from "../cards/FriendDisplayCard";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 

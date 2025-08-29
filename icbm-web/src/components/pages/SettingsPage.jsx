@@ -9,9 +9,9 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 
-import GeneralSettingsCard from "../widgets/GeneralSettingsCard";
-import ServerStatusCard from "../widgets/ServerStatusCard";
-import TestOptionsCard from "../widgets/TestOptionsCard";
+import GeneralSettingsCard from "../cards/GeneralSettingsCard";
+import ServerStatusCard from "../cards/ServerStatusCard";
+import TestOptionsCard from "../cards/TestOptionsCard";
 
 // Accept onNavigate as a prop from App.jsx
 function SettingsPage({ onNavigate }) {
