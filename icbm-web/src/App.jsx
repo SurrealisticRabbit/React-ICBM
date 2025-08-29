@@ -1,4 +1,3 @@
-import "./App.css";
 import * as React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -50,7 +49,6 @@ function App() {
       >
         {value === 0 && <GoPage />}
         {value === 1 && <FriendsPage />}
-        {/* 4. Pass the setView function down to SettingsPage */}
         {value === 2 && <SettingsPage onNavigate={setView} />}
         <Paper
           sx={{

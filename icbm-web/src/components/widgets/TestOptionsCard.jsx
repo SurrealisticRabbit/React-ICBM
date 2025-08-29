@@ -26,15 +26,12 @@ function TestOptionsCard({ onNavigate }) {
             Test Options
           </Typography>
           <Stack direction="column" spacing={2}>
-            <Button variant="outlined" color="primary">
-              Open Sign-In Page
-            </Button>
             <Button
               variant="outlined"
               color="secondary"
               onClick={() => onNavigate("register")}
             >
-              Open Register Page
+              Open Register / Sign-In Page
             </Button>
             <Button
               variant="outlined"
