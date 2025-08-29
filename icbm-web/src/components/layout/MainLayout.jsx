@@ -12,14 +12,15 @@ const MainLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const pathToValue = {
-    '/': 0,
-    '/friends': 1,
-    '/settings': 2,
-  };
-
-  // Determine the current value for the BottomNavigation based on the URL
-  const currentValue = pathToValue[location.pathname];
+  // This logic now correctly handles nested routes like /settings/profile
+  let currentValue;
+  if (location.pathname.startsWith('/settings')) {
+    currentValue = 2;
+  } else if (location.pathname.startsWith('/friends')) {
+    currentValue = 1;
+  } else {
+    currentValue = 0;
+  }
 
   return (
     <Box
@@ -62,4 +63,3 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
-
