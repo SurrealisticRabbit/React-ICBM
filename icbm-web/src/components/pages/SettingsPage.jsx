@@ -12,6 +12,7 @@ import Chip from "@mui/material/Chip";
 import GeneralSettingsCard from "../cards/GeneralSettingsCard";
 import ServerStatusCard from "../cards/ServerStatusCard";
 import TestOptionsCard from "../cards/TestOptionsCard";
+import UserSettingsCard from "../cards/UserSettingsCard";
 
 // Accept onNavigate as a prop from App.jsx
 function SettingsPage({ onNavigate }) {
@@ -23,10 +24,10 @@ function SettingsPage({ onNavigate }) {
       }}
     >
       <Stack spacing={2}>
-        <GeneralSettingsCard />
+        <UserSettingsCard/>
         <ServerStatusCard />
-        {/* Pass onNavigate down to the TestOptionsCard */}
         <TestOptionsCard onNavigate={onNavigate} />
+        <GeneralSettingsCard />
       </Stack>
     </Box>
   );
