@@ -1,0 +1,15 @@
+{
+  "name": "react-icbm",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "icbm-server",
+    "icbm-web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix icbm-server\" \"npm run dev --prefix icbm-web\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

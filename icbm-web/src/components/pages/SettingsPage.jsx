@@ -14,8 +14,8 @@ import ServerStatusCard from "../cards/ServerStatusCard";
 import TestOptionsCard from "../cards/TestOptionsCard";
 import UserSettingsCard from "../cards/UserSettingsCard";
 
-// Accept onNavigate as a prop from App.jsx
-function SettingsPage({ onNavigate }) {
+// The onNavigate prop is no longer needed, as we are using react-router-dom
+function SettingsPage() {
   return (
     <Box
       sx={{
@@ -26,7 +26,7 @@ function SettingsPage({ onNavigate }) {
       <Stack spacing={2}>
         <UserSettingsCard/>
         <ServerStatusCard />
-        <TestOptionsCard onNavigate={onNavigate} />
+        <TestOptionsCard />
         <GeneralSettingsCard />
       </Stack>
     </Box>

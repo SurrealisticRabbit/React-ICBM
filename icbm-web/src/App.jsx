@@ -1,19 +1,18 @@
-import * as React from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+
+// Layout and Util Components
+import MainLayout from "./components/layout/MainLayout";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
+
+// Page Components
 import GoPage from "./components/pages/GoPage";
 import FriendsPage from "./components/pages/FriendsPage";
 import SettingsPage from "./components/pages/SettingsPage";
-import RegisterPage from "./components/pages/RegisterPage"; // 1. Import the new page
+import RegisterPage from "./components/pages/RegisterPage";
 import CountdownPage from "./components/pages/CountdownPage";
-
 
 const darkTheme = createTheme({
   palette: {
@@ -24,60 +23,31 @@ const darkTheme = createTheme({
   },
 });
 
+// A small wrapper for CountdownPage to handle navigation via props
+const CountdownWrapper = () => {
+  const navigate = useNavigate();
+  return <CountdownPage onComplete={() => navigate("/")} />;
+};
+
 function App() {
-  const [value, setValue] = React.useState(0);
-  const [view, setView] = React.useState("main");
-
-  if (view === "register") {
-    return <RegisterPage onNavigate={setView} />;
-  } else if (view === "countdown") {
-    return <CountdownPage onComplete={setView}/>;
-  }
-
-
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline enableColorScheme />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          pt: 1,
-          pb: "72px",
-        }}
-      >
-        {value === 0 && <GoPage />}
-        {value === 1 && <FriendsPage />}
-        {value === 2 && <SettingsPage onNavigate={setView} />}
-        <Paper
-          sx={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}
-          elevation={3}
-        >
-          <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          >
-            <BottomNavigationAction label="Go" icon={<WhatshotIcon />} />
-            <BottomNavigationAction
-              label="Friends"
-              icon={<PeopleOutlineIcon />}
-            />
-            <BottomNavigationAction
-              label="Settings"
-              icon={<SettingsOutlinedIcon />}
-            />
-          </BottomNavigation>
-        </Paper>
-      </Box>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<RegisterPage />} />
+          <Route path="/countdown" element={<CountdownWrapper />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<GoPage />} />
+              <Route path="/friends" element={<FriendsPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

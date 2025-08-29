@@ -6,32 +6,45 @@ import {
   Typography,
   Container,
   Paper,
+  Alert,
 } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import { useNavigate } from "react-router-dom";
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#FFFFFF",
-    },
-  },
-});
-
-function RegisterPage({ onNavigate }) {
+function RegisterPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleRegister = (event) => {
+  const handleAuthenticate = async (event) => {
     event.preventDefault();
-    console.log("Registering with:", { username, password });
-    alert(`Registered with username: ${username}`);
+    setError(""); // Clear previous errors
+
+    try {
+      const response = await fetch("http://localhost:4000/api/authenticate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "An error occurred.");
+      }
+
+      localStorage.setItem("token", data.token);
+      navigate("/"); // Navigate to the main app view on success
+    } catch (err) {
+      setError(err.message);
+      console.error("Authentication failed:", err);
+    }
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline enableColorScheme />
+    // ThemeProvider and CssBaseline are now handled in App.jsx
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -41,11 +54,12 @@ function RegisterPage({ onNavigate }) {
             alignItems: "center",
           }}
         >
-          <Paper elevation={6} sx={{ p: 4 }}>
+          <Paper elevation={6} sx={{ p: 4, width: "100%" }}>
             <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
-              Register
+              Register / Sign In
             </Typography>
-            <Box component="form" onSubmit={handleRegister} noValidate>
+            <Box component="form" onSubmit={handleAuthenticate} noValidate>
+              {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
               <TextField
                 margin="normal"
                 required
@@ -74,22 +88,12 @@ function RegisterPage({ onNavigate }) {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Register
-              </Button>
-              <Button
-                type="button"
-                fullWidth
-                variant="outlined"
-                sx={{ mb: 2 }}
-                onClick={() => onNavigate("main")} // Call the navigation function
-              >
-                Back to App
+                Register / Sign In
               </Button>
             </Box>
           </Paper>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }
 

@@ -55,7 +55,7 @@ function UserDisplayCard({ user }) {
           label={user_mode}
           color={user_mode_colour}
           variant="outlined"
-          sx={{ mr: 1 }}
+          sx={{ mr: 1 }}a
         />
       </Box>
     </Card>
